@@ -5,21 +5,42 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.sql.*;
+import java.util.Scanner;
 
 
 public class HelloController implements Initializable {
 
     @FXML
     private TextArea database;
+/*LA FUNCION FUNCIONA REGULAR, PERO ES PRINCIPALMENTE PARA PROBAR EL FUNCIONAMIENTO GENERAL*/
+    public String setQueryToUse(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca el numero del query respectivo:");
+        int queryToUse = sc.nextInt();
+        switch (queryToUse){
+            case 1:
+                return "SELECT * FROM VW_RESUMEN_SISTEMA";
+        }
+        return "SELECT * FROM CLIENTES";
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "SYS as SYSDBA", "Oracle2026");
+            Properties props = new Properties();
+            props.setProperty("user", "SYS");
+            props.setProperty("password", "Oracle2026");
+            props.setProperty("internal_logon", "SYSDBA");
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:orcl", props);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM VW_RESUMEN_SISTEMA");
+            ResultSet rs = stm.executeQuery(setQueryToUse());
+
+            System.out.println("Tamanno de rs es: "+rs.getFetchSize());
+
             while (rs.next()){
                 database.appendText("=== CLIENTE ===\n");
                 database.appendText("ID Cliente: " + rs.getInt(1) + "\n");
