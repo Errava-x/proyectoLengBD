@@ -44,7 +44,8 @@ public class HelloController implements Initializable {
             while (rs.next()){
                 database.appendText("=== CLIENTE ===\n");
                 database.appendText("ID Cliente: " + rs.getInt(1) + "\n");
-                database.appendText("Nombre: " + rs.getString(2) + "\n\n");
+                database.appendText("Nombre: " + rs.getString(1) + "\n\n");
+                database.appendText("Apellido: " + rs.getString(2) + "\n\n");
 
                 database.appendText("=== MASCOTA ===\n");
                 database.appendText("ID Mascota: " + rs.getInt(3) + "\n");
