@@ -1,9 +1,7 @@
 package org.example.happypaws;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -11,11 +9,10 @@ import java.sql.*;
 import java.util.Scanner;
 
 
-public class HelloController implements Initializable {
-
+public class DBConnection implements Initializable {
     @FXML
     private TextArea database;
-/*LA FUNCION FUNCIONA REGULAR, PERO ES PRINCIPALMENTE PARA PROBAR EL FUNCIONAMIENTO GENERAL*/
+    /*LA FUNCION FUNCIONA REGULAR, PERO ES PRINCIPALMENTE PARA PROBAR EL FUNCIONAMIENTO GENERAL*/
     public String setQueryToUse(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduzca el numero del query respectivo:");
@@ -69,7 +66,7 @@ public class HelloController implements Initializable {
 
                 database.appendText("\n---------------------------------\n\n");
                 database.setText(database.getText() + "\n");
-                System.out.println("base de datos accedida");
+                System.out.println("base de datos accedida dbconnection");
             }
         }catch (Exception e){
             e.printStackTrace();
