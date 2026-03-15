@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<<<<<<< HEAD:HappyPaws/src/main/resources/org/example/happypaws/hello-view.fxml
 <?import javafx.scene.control.ButtonBar?>
-=======
 <?import javafx.scene.control.Button?>
->>>>>>> ErickFeat:HappyPaws/src/main/resources/org/example/happypaws/dbConnectionProof.fxml
+
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>

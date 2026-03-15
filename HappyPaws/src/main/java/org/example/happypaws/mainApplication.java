@@ -11,7 +11,6 @@ public class mainApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-    /*Comentario para pushear a branch*/
 
     @Override
     public void start(Stage stage) throws IOException {
