@@ -10,10 +10,9 @@ public class Cliente {
     }
 
     public ResultSet getAll() {
-        /*de aqui sacamos la informacion de los usuario con la vista que yo cree, por whatsapp la mando por si acaso,
-        quiza no la puedas ejecutar, pero se lo pides a GPT para que te ensene como que podrias esperar ver*/
+
         try {
-            String sql = "SELECT * FROM VW_RESUMEN_SISTEMA";
+            String sql = "SELECT * FROM USUARIO";
             Statement stm = conn.createStatement();
             return stm.executeQuery(sql);
         } catch (Exception e) {
@@ -22,19 +21,31 @@ public class Cliente {
         }
     }
 
-    public boolean createCita(int p_id_cita, Date p_fecha, String p_hora) {
-        /*Este SP realmente no existe con 3 valores, nada mas fue para pruebas, DEBE MODIFICARSE*/
+    public boolean createCita(String p_nombre,
+                              String p_primer_apellido,
+                              String p_segundo_apellido,
+                              String p_username,
+                              String p_pass,
+                              String p_rol) {
+
         try {
-            String sql = "SP_AGENDAR_CITA(?, ?, ?)";
+            String sql = "{ call SP_REGISTRAR_USUARIO(?, ?, ?, ?, ?, ?) }";
 
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, p_id_cita);
-            stmt.setDate(2, p_fecha);
-            stmt.setString(3, p_hora);
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, p_nombre);
+            stmt.setString(2, p_primer_apellido);
+            stmt.setString(3, p_segundo_apellido);
+            stmt.setString(4, p_username);
+            stmt.setString(5, p_pass);
+            stmt.setString(6, p_rol);
 
-            return stmt.executeUpdate() > 0;
+            stmt.execute();
+            stmt.close();
+
+            return true;
+
         } catch (Exception e) {
-            System.out.println("Error en createCita: " + e.getMessage());
+            System.out.println("Error en registrarUsuario: " + e.getMessage());
             return false;
         }
     }
