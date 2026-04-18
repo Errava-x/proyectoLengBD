@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Button?>
+
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -11,6 +13,7 @@
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
    <children>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" />
       <Text fx:id="sobrecaja" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado obtenido de la DB" />
       <TextArea fx:id="database" prefHeight="600.0" prefWidth="469.0" promptText="Texto de placeholder" />
        <Button mnemonicParsing="false" onAction="#cargarDatos" text="Cargar Datos" />
