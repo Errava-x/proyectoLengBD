@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.example.happypaws.DBConnection;
@@ -29,6 +30,10 @@ public class viewsController implements Initializable {
     private Cliente clienteModel;
     @FXML
     private TextArea database;
+    @FXML
+    private Button cargarDatosBtn;
+    @FXML
+    private TextArea pruebaTxtArea;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBConnection db = new DBConnection();
@@ -36,7 +41,9 @@ public class viewsController implements Initializable {
     }
 
     public void cargarDatos() {
+        database.appendText(cargarDatosBtn.getText());
         ResultSet infoClientes = clienteModel.getAll();
+        database.appendText(pruebaTxtArea.getText());
             try {
                 System.out.println("Tamanno de rs es: " + infoClientes.getFetchSize());
                 while (infoClientes.next()) {

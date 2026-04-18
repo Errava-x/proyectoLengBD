@@ -8,7 +8,7 @@ public class DBConnection {
     private String host = "localhost";
     private String port = "1521";
     private String db   = "orcl";
-    private String user = "SYS";
+    private String user = "HP_OWNER";
     private String pass = "Oracle2026";
 
     public Connection connect() {
@@ -16,7 +16,6 @@ public class DBConnection {
             Properties props = new Properties();
             props.setProperty("user", user);
             props.setProperty("password", pass);
-            props.setProperty("internal_logon", "SYSDBA");
 
             Connection conn = DriverManager.getConnection(
                     "jdbc:oracle:thin:@" + host + ":" + port + ":" + db, props

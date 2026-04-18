@@ -10,9 +10,8 @@ public class Cliente {
     }
 
     public ResultSet getAll() {
-
         try {
-            String sql = "SELECT * FROM USUARIO";
+            String sql = "SELECT * FROM VW_RESUMEN_SISTEMA";
             Statement stm = conn.createStatement();
             return stm.executeQuery(sql);
         } catch (Exception e) {
@@ -21,13 +20,12 @@ public class Cliente {
         }
     }
 
-    public boolean createCita(String p_nombre,
+    public boolean registrarUsuario(String p_nombre,
                               String p_primer_apellido,
                               String p_segundo_apellido,
                               String p_username,
                               String p_pass,
                               String p_rol) {
-
         try {
             String sql = "{ call SP_REGISTRAR_USUARIO(?, ?, ?, ?, ?, ?) }";
 
