@@ -1,41 +1,29 @@
 package org.example.happypaws;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
-import java.net.URL;
-import java.util.Properties;
-import java.util.ResourceBundle;
+
 import java.sql.*;
-import java.util.Scanner;
+import java.util.Properties;
 
+public class DBConnection {
 
-public class DBConnection implements Initializable {
-    @FXML
-    private TextArea database;
-    /*LA FUNCION FUNCIONA REGULAR, PERO ES PRINCIPALMENTE PARA PROBAR EL FUNCIONAMIENTO GENERAL*/
-    public String setQueryToUse(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Introduzca el numero del query respectivo:");
-        int queryToUse = sc.nextInt();
-        switch (queryToUse){
-            case 1:
-                return "SELECT * FROM VW_RESUMEN_SISTEMA";
-        }
-        return "SELECT * FROM CLIENTES";
-    }
+    private String host = "localhost";
+    private String port = "1521";
+    private String db   = "orcl";
+    private String user = "SYS";
+    private String pass = "Oracle2026";
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try{
+    public Connection connect() {
+        try {
             Properties props = new Properties();
-            props.setProperty("user", "SYS");
-            props.setProperty("password", "Oracle2026");
+            props.setProperty("user", user);
+            props.setProperty("password", pass);
             props.setProperty("internal_logon", "SYSDBA");
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@localhost:1521:orcl", props);
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery(setQueryToUse());
 
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@" + host + ":" + port + ":" + db, props
+            );
+            return conn;
+
+<<<<<<< HEAD
             System.out.println("Tamanno de rs es: "+rs.getFetchSize());
 
             while (rs.next()){
@@ -71,6 +59,11 @@ public class DBConnection implements Initializable {
             }
         }catch (Exception e){
             e.printStackTrace();
+=======
+        } catch (Exception e) {
+            System.out.println("Error en la DB connection: " + e.getMessage());
+            return null;
+>>>>>>> ErickFeat
         }
     }
 }
