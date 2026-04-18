@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.happypaws.Controllers.viewsController">
+   <children>
+      <AnchorPane prefHeight="82.0" prefWidth="600.0" style="-fx-background-color: #E96151;">
+         <children>
+            <Label layoutX="194.0" layoutY="28.0" text="Registro de Usuario" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="29.0" layoutY="117.0" text="Nombre">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameTextField" layoutX="29.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Nombre" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></TextField>
+      <Label layoutX="32.0" layoutY="192.0" text="Primer Apellido">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstlastnameTextField" layoutX="29.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" promptText="Primer Apellido" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></TextField>
+      <Label layoutX="32.0" layoutY="256.0" text="Segundo Apellido">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="secondlastnameTextField" layoutX="29.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="Segundo Apellido" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></TextField>
+      <Label layoutX="425.0" layoutY="117.0" text="Usuario">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userTextField" layoutX="425.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Usuario" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></TextField>
+      <Label layoutX="425.0" layoutY="192.0" text="Contraseña">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="setpasswordTextField" layoutX="425.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" promptText="Contraseña" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></TextField>
+      <Label layoutX="425.0" layoutY="256.0" text="Confirmar Contraseña">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="confirmpasswordTextField" layoutX="425.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="Confirmar Contraseña" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></TextField>
+      <Button fx:id="registerButton" onAction="#irMenu" layoutX="239.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #E96151; -fx-background-radius: 5;" text="Registrarse" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
+      <Button fx:id="returnbutton" layoutX="238.0" layoutY="350.0" mnemonicParsing="false" onAction="#irLogin" prefHeight="25.0" prefWidth="128.0" style="-fx-background-color: #b30000; -fx-background-radius: 5;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
