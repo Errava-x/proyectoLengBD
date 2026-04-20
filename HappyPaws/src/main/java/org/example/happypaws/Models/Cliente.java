@@ -9,7 +9,7 @@ public class Cliente {
         this.conn = db.connect();
     }
 
-    public ResultSet getAll() {
+    public ResultSet getResumenTest() {
         try {
             String sql = "SELECT * FROM VW_RESUMEN_SISTEMA";
             Statement stm = conn.createStatement();
@@ -20,14 +20,36 @@ public class Cliente {
         }
     }
 
-    public boolean registrarUsuario(String p_nombre,
-                              String p_primer_apellido,
-                              String p_segundo_apellido,
-                              String p_username,
-                              String p_pass,
-                              String p_rol) {
+    public boolean login(String username, String password) {
         try {
-            String sql = "{ call SP_REGISTRAR_USUARIO(?, ?, ?, ?, ?, ?) }";
+            String sql = "{CALL PKG_HP_USUARIOS.SP_LOGIN_USUARIO(?, ?, ?, ?)}";
+
+            CallableStatement stmt = conn.prepareCall(sql);
+            //IN
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            //OUT
+            stmt.registerOutParameter(3, java.sql.Types.INTEGER);
+            stmt.registerOutParameter(4, java.sql.Types.VARCHAR);
+            stmt.execute();
+            //OUT VALUES
+            int ok = stmt.getInt(3);
+            String rol = stmt.getString(4);
+            //LOG
+            System.out.println("Resultado de login: " + ok);
+            System.out.println("Rol: " + rol);
+
+            return ok == 1;
+        } catch (Exception e) {
+            System.out.println("Error en SP_LOGIN_USUARIO: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean registrarUsuario(String p_nombre, String p_primer_apellido, String p_segundo_apellido,
+                                    String p_username, String p_pass, String p_rol) {
+        try {
+            String sql = "{CALL PKG_HP_USUARIOS.SP_REGISTRAR_USUARIO(?, ?, ?, ?, ?, ?) }";
 
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1, p_nombre);

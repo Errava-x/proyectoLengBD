@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.happypaws.Controllers.viewsController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.happypaws.Controllers.consultasController">
    <Pane prefHeight="184.0" prefWidth="1237.0" style="-fx-background-color: #E96151;" translateY="-32.0">
       <children>
       
@@ -37,37 +36,31 @@
       </children>
    </Pane>
 
-    <TableView fx:id="tabla" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="1206.0" style="-fx-background-color: SILVER;" translateY="-15.0">
+    <TableView fx:id="tabla" prefHeight="334.0" prefWidth="1206.0" style="-fx-background-color: SILVER;" translateY="-15.0">
 
         <columns>
 
-            <TableColumn fx:id="colClienteID" text="ID Cliente" />
-            <TableColumn fx:id="colClienteNombre" text="Cliente" />
+            <!-- CLIENTE -->
+            <TableColumn fx:id="colClienteID" prefWidth="64.0" text="ID Cliente" />
+            <TableColumn fx:id="colClienteNombre" prefWidth="127.0" text="Cliente" />
 
-            <TableColumn fx:id="colMascotaID" text="ID Mascota" />
-            <TableColumn fx:id="colMascotaNombre" text="Mascota" />
-            <TableColumn fx:id="colEspecie" text="Especie" />
-            <TableColumn fx:id="colRaza" prefWidth="74.39996337890625" text="Raza" />
+            <!-- MASCOTA -->
+            <TableColumn fx:id="colMascotaID" prefWidth="68.0" text="ID Mascota" />
+            <TableColumn fx:id="colMascotaNombre" prefWidth="82.0" text="Mascota" />
+            <TableColumn fx:id="colEspecie" prefWidth="76.0" text="Especie" />
+            <TableColumn fx:id="colRaza" prefWidth="94.0" text="Raza" />
 
-            <TableColumn fx:id="colMedicoID" prefWidth="85.60003662109375" text="ID Médico" />
-            <TableColumn fx:id="colMedicoNombre" text="Médico" />
-
-            <TableColumn fx:id="colVentaID" text="ID Venta" />
-            <TableColumn fx:id="colProducto" text="Producto" />
-            <TableColumn fx:id="colMonto" text="Monto" />
-
-            <TableColumn fx:id="colCitaID" text="ID Cita" />
-            <TableColumn fx:id="colFecha" text="Fecha" />
-            <TableColumn fx:id="colConsulta" prefWidth="89.5999755859375" text="Tipo Consulta" />
-            <TableColumn fx:id="colEstado" prefWidth="70.4000244140625" text="Estado" />
+            <!-- CITA -->
+            <TableColumn fx:id="colCitaID" prefWidth="50.0" text="ID Cita" />
+            <TableColumn fx:id="colFecha" prefWidth="113.0" text="Fecha" />
+            <TableColumn fx:id="colHora" prefWidth="106.0" text="Hora" />
+            <TableColumn fx:id="colConsulta" prefWidth="147.0" text="Tipo Consulta" />
+            <TableColumn fx:id="colEstado" prefWidth="97.0" text="Estado" />
+            <TableColumn fx:id="colObservaciones" prefWidth="211.0" text="Observaciones" />
 
         </columns>
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-
     </TableView>
-   <Button mnemonicParsing="false" onAction="#irMenu" prefHeight="38.0" prefWidth="157.0" style="-fx-background-radius: 10; -fx-background-color: RED;" text="Regresar" textFill="WHITE" translateX="500.0">
+   <Button mnemonicParsing="false" onAction="#volver" prefHeight="38.0" prefWidth="157.0" style="-fx-background-radius: 10; -fx-background-color: RED;" text="Regresar" textFill="WHITE" translateX="500.0">
       <font>
          <Font name="Arial" size="14.0" />
       </font>

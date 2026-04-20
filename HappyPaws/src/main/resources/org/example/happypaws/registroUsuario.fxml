@@ -22,7 +22,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField" layoutX="29.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Nombre" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="regName" layoutX="29.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Nombre" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font></TextField>
@@ -31,7 +31,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="firstlastnameTextField" layoutX="29.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" promptText="Primer Apellido" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="regFLastName" layoutX="29.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" promptText="Primer Apellido" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font></TextField>
@@ -40,7 +40,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="secondlastnameTextField" layoutX="29.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="Segundo Apellido" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="regSLastName" layoutX="29.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="Segundo Apellido" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font></TextField>
@@ -49,7 +49,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="userTextField" layoutX="425.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Usuario" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="regUser" layoutX="425.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" promptText="Usuario" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font></TextField>
@@ -58,7 +58,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="setpasswordTextField" layoutX="425.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" promptText="Contraseña" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="regPassword" layoutX="425.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" promptText="Contraseña" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font></TextField>
@@ -67,11 +67,11 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="confirmpasswordTextField" layoutX="425.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="Confirmar Contraseña" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="regConfirmPassword" layoutX="425.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="Confirmar Contraseña" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font></TextField>
-      <Button fx:id="registerButton" onAction="#irMenu" layoutX="239.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #E96151; -fx-background-radius: 5;" text="Registrarse" textFill="WHITE">
+      <Button fx:id="registerButton" layoutX="239.0" layoutY="309.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #E96151; -fx-background-radius: 5;" text="Registrarse" textFill="WHITE">
          <font>
             <Font name="Arial" size="13.0" />
          </font></Button>

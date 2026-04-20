@@ -10,10 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.happypaws.DBConnection;
 import org.example.happypaws.Models.Cliente;
-
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -28,12 +30,19 @@ import java.util.Scanner;
 public class viewsController implements Initializable {
     private String rootURL = "/org/example/happypaws/";
     private Cliente clienteModel;
-    @FXML
-    private TextArea database;
-    @FXML
-    private Button cargarDatosBtn;
-    @FXML
-    private TextArea pruebaTxtArea;
+    @FXML private TextArea database;
+    @FXML private Button cargarDatosBtn;
+    @FXML private TextArea pruebaTxtArea;
+    @FXML private TextField usernameTextField;
+    @FXML private TextField passwordTextField;
+    @FXML private TextField regName;
+    @FXML private TextField regUser;
+    @FXML private TextField regFLastName;
+    @FXML private TextField regSLastName;
+    @FXML private TextField regPassword;
+    @FXML private TextField regConfirmPassword;
+    @FXML private Button registerButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBConnection db = new DBConnection();
@@ -42,7 +51,7 @@ public class viewsController implements Initializable {
 
     public void cargarDatos() {
         database.appendText(cargarDatosBtn.getText());
-        ResultSet infoClientes = clienteModel.getAll();
+        ResultSet infoClientes = clienteModel.getResumenTest();
         database.appendText(pruebaTxtArea.getText());
             try {
                 System.out.println("Tamanno de rs es: " + infoClientes.getFetchSize());
@@ -80,7 +89,49 @@ public class viewsController implements Initializable {
             }
     }
 
+    public void login(){
+        System.out.println("Contrasena y Usuario: " +
+                "\nUsuario: "+ usernameTextField.getText()+"\nPassword: "+passwordTextField.getText());
+        if(clienteModel.login(usernameTextField.getText(), passwordTextField.getText()) == true){
+            try{
+                Stage stage = (Stage) usernameTextField.getScene().getWindow();
+                irMenu(stage);
+            }catch (Exception e){
+                System.out.println("Error al cargar vista de login: "+e.getMessage()+"\n\n");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Error en la informacion de logueo");
+        }
+    }
+
+    public void registrarUsuario(){
+        String nombre = regName.getText();
+        String usuario = regUser.getText();
+        String primerApellido = regFLastName.getText();
+        String segundoApellido = regSLastName.getText();
+        String password = regPassword.getText();
+        String checkPassword = regConfirmPassword.getText();
+        String rol = "ADMIN";
+        if (password.equals(checkPassword)){
+            try{
+                clienteModel.registrarUsuario(nombre, usuario, primerApellido, segundoApellido, password, rol);
+                JOptionPane.showMessageDialog(null, "=== USUARIO NUEVO REGISTRADO ===\n" +
+                        "Nombre: "+ nombre + " " + primerApellido + " " + segundoApellido +
+                        "\nUsuario: "+ usuario +
+                        "\nRol: "+ rol);
+                Stage stage = (Stage) regUser.getScene().getWindow();
+                irMenu(stage);
+            }catch (Exception e){
+                System.out.println("ERROR EN registrarUsuario controller: "+ e.getMessage());
+                e.printStackTrace();
+            }
+        }else{
+        JOptionPane.showMessageDialog(null, "Contrasenas son distintas, intente de nuevo");
+        }
+    }
+
     /*NAVEGACIÓN DE VISTAS NAVEGACIÓN DE VISTAS NAVEGACIÓN DE VISTAS NAVEGACIÓN DE VISTAS NAVEGACIÓN DE VISTAS */
+
     public void irLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(rootURL+"login.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -97,9 +148,15 @@ public class viewsController implements Initializable {
         stage.show();
     }
 
-    public void irMenu(ActionEvent event) throws IOException {
+    public void irMenu(ActionEvent event) throws IOException { ///NO REUSABLE
         Parent root = FXMLLoader.load(getClass().getResource(rootURL+"menuCrud.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
+    }
+    public void irMenu(Stage stage) throws IOException { ///REUSABLE
+        Parent root = FXMLLoader.load(getClass().getResource(rootURL + "menuCrud.fxml"));
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
         stage.show();
@@ -130,11 +187,16 @@ public class viewsController implements Initializable {
     }
 
     public void irRegistrar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(rootURL+"registrarCitas.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.centerOnScreen();
-        stage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(rootURL+"registrarCitas.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+        }catch (Exception e){
+            System.out.println("Error en vista de registrar");
+            e.printStackTrace();
+        }
     }
 
     public void irDB(ActionEvent event) throws IOException {

@@ -9,10 +9,10 @@ public class Cita {
         this.conn = db.connect();
     }
 
-    public ResultSet getAll() {
+    public ResultSet cargarTabla() {
 
         try {
-            String sql = "SELECT * FROM VW_RESUMEN_SISTEMA";
+            String sql = "SELECT * FROM VW_VER_CITAS";
             Statement stm = conn.createStatement();
             return stm.executeQuery(sql);
         } catch (Exception e) {
