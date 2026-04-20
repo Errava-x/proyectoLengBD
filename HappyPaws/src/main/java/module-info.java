@@ -5,6 +5,7 @@ module org.example.happypaws {
     requires javafx.graphics;
     requires java.sql;
     requires java.desktop;
+    requires ojdbc8;
 
     opens org.example.happypaws to javafx.fxml;
     opens org.example.happypaws.Tablas to javafx.base;

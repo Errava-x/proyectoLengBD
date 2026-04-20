@@ -114,7 +114,7 @@ public class viewsController implements Initializable {
         String rol = "ADMIN";
         if (password.equals(checkPassword)){
             try{
-                clienteModel.registrarUsuario(nombre, usuario, primerApellido, segundoApellido, password, rol);
+                clienteModel.registrarUsuario(nombre, primerApellido, segundoApellido, usuario, password, rol);
                 JOptionPane.showMessageDialog(null, "=== USUARIO NUEVO REGISTRADO ===\n" +
                         "Nombre: "+ nombre + " " + primerApellido + " " + segundoApellido +
                         "\nUsuario: "+ usuario +

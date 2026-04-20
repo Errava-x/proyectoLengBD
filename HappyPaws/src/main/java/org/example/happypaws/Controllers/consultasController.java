@@ -20,6 +20,7 @@ import org.example.happypaws.Models.Cita;
 import org.example.happypaws.Models.Cliente;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -87,10 +88,117 @@ public class consultasController implements Initializable{
                 listaCitasJV.add(cita);
             }
             tabla.setItems(listaCitasJV);
+            listaCitasDB.close();
         }catch (Exception e){
             System.out.println("Error al cargar la tabla en consultasController initialize" + e.getMessage());
         }
 
+    }
+    public boolean esNumerico(String aVerificar){
+        try {
+            Integer.parseInt(aVerificar);
+            System.out.println("El valor verificado es: "+ aVerificar);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error verificando: "+ aVerificar);
+            return false;
+        }
+    }
+    public void cargarTablaPorId(){
+        ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
+        if (esNumerico(buscador.getText())){
+
+        ResultSet listaCitasDB = citaModel.cargarTablaPorId(Integer.parseInt(buscador.getText()));
+
+        try {
+            while (listaCitasDB.next()){
+                consultasCitas cita = new consultasCitas(
+                        listaCitasDB.getInt("ID_CLIENTE"),
+                        listaCitasDB.getString("NOMBRE_CLIENTE"),
+                        listaCitasDB.getInt("ID_MASCOTA"),
+                        listaCitasDB.getString("NOMBRE_MASCOTA"),
+                        listaCitasDB.getString("ESPECIE"),
+                        listaCitasDB.getString("RAZA"),
+                        listaCitasDB.getInt("ID_CITA"),
+                        listaCitasDB.getDate("FECHA"),
+                        listaCitasDB.getString("HORA"),
+                        listaCitasDB.getString("TIPO_CONSULTA"),
+                        listaCitasDB.getString("ESTADO"),
+                        listaCitasDB.getString("OBSERVACIONES")
+                );
+                listaCitasJV.add(cita);
+            }
+            tabla.setItems(listaCitasJV);
+        }catch (Exception e){
+            System.out.println("Error al cargar la tabla por ID en consultasController" + e.getMessage());
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Para buscar por ID se ocupa valor numerico existente");
+        }
+    }
+
+    public void cargarTablaPorCliente(){
+        ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
+        if (buscador.getText().length() > 0){
+            ResultSet listaCitasDB = citaModel.cargarTablaPorCliente(buscador.getText());
+
+            try {
+                while (listaCitasDB.next()){
+                    consultasCitas cita = new consultasCitas(
+                            listaCitasDB.getInt("ID_CLIENTE"),
+                            listaCitasDB.getString("NOMBRE_CLIENTE"),
+                            listaCitasDB.getInt("ID_MASCOTA"),
+                            listaCitasDB.getString("NOMBRE_MASCOTA"),
+                            listaCitasDB.getString("ESPECIE"),
+                            listaCitasDB.getString("RAZA"),
+                            listaCitasDB.getInt("ID_CITA"),
+                            listaCitasDB.getDate("FECHA"),
+                            listaCitasDB.getString("HORA"),
+                            listaCitasDB.getString("TIPO_CONSULTA"),
+                            listaCitasDB.getString("ESTADO"),
+                            listaCitasDB.getString("OBSERVACIONES")
+                    );
+                    listaCitasJV.add(cita);
+                }
+                tabla.setItems(listaCitasJV);
+            }catch (Exception e){
+                System.out.println("Error al cargar la tabla por CLIENTE en consultasController" + e.getMessage());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Para buscar por cliente se ocupa nombre existente");
+        }
+    }
+
+    public void cargarTablaPorMascota(){
+        ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
+        if (buscador.getText().length() > 0){
+            ResultSet listaCitasDB = citaModel.cargarTablaPorMascota(buscador.getText());
+
+            try {
+                while (listaCitasDB.next()){
+                    consultasCitas cita = new consultasCitas(
+                            listaCitasDB.getInt("ID_CLIENTE"),
+                            listaCitasDB.getString("NOMBRE_CLIENTE"),
+                            listaCitasDB.getInt("ID_MASCOTA"),
+                            listaCitasDB.getString("NOMBRE_MASCOTA"),
+                            listaCitasDB.getString("ESPECIE"),
+                            listaCitasDB.getString("RAZA"),
+                            listaCitasDB.getInt("ID_CITA"),
+                            listaCitasDB.getDate("FECHA"),
+                            listaCitasDB.getString("HORA"),
+                            listaCitasDB.getString("TIPO_CONSULTA"),
+                            listaCitasDB.getString("ESTADO"),
+                            listaCitasDB.getString("OBSERVACIONES")
+                    );
+                    listaCitasJV.add(cita);
+                }
+                tabla.setItems(listaCitasJV);
+            }catch (Exception e){
+                System.out.println("Error al cargar la tabla por MASCOTA en consultasController" + e.getMessage());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Para buscar por mascota se ocupa mascota existente");
+        }
     }
 
     /// VUELVE AL CRUD
