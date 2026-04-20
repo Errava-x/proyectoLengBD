@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="612.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.happypaws.Controllers.viewsController">
+<AnchorPane prefHeight="612.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.happypaws.Controllers.actualizarController">
    <children>
       <Pane layoutX="-7.0" layoutY="-5.0" prefHeight="209.0" prefWidth="1258.0" style="-fx-background-color: #E96151;">
          <children>
@@ -19,8 +19,8 @@
                   <Font name="Arial" size="36.0" />
                </font>
             </Text>
-            <TextField layoutX="154.0" layoutY="113.0" prefHeight="26.0" prefWidth="761.0" promptText="Busqueda por ID unicamente" scaleY="1.5" style="-fx-background-color: WHITE; -fx-background-radius: 30;" />
-            <Button layoutX="962.0" layoutY="114.0" mnemonicParsing="false" scaleX="1.5" scaleY="1.5" style="-fx-background-radius: 10; -fx-background-color: #5568E3;" text="Buscar" textFill="WHITE" />
+            <TextField fx:id="buscador" layoutX="154.0" layoutY="113.0" prefHeight="26.0" prefWidth="761.0" promptText="Busqueda por ID unicamente" scaleY="1.5" style="-fx-background-color: WHITE; -fx-background-radius: 30;" />
+            <Button layoutX="962.0" layoutY="114.0" mnemonicParsing="false" onAction="#mostrarCita" scaleX="1.5" scaleY="1.5" style="-fx-background-radius: 10; -fx-background-color: #5568E3;" text="Buscar" textFill="WHITE" />
          </children>
       </Pane>
       <Label layoutX="90.0" layoutY="309.0" text="ID">
@@ -28,17 +28,17 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField" layoutX="160.0" layoutY="304.0" prefHeight="25.0" prefWidth="149.0" promptText="ID (NO EDITABLE)" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="id" disable="true" layoutX="160.0" layoutY="304.0" prefHeight="25.0" prefWidth="149.0" promptText="ID (NO EDITABLE)" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
       </TextField>
-      <Label layoutX="90.0" layoutY="351.0" text="Usuario">
+      <Label layoutX="90.0" layoutY="351.0" text="Cliente">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField1" layoutX="160.0" layoutY="346.0" prefHeight="25.0" prefWidth="149.0" promptText="Usuario" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="cliente" layoutX="160.0" layoutY="346.0" prefHeight="25.0" prefWidth="149.0" promptText="Cliente" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -48,17 +48,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField2" layoutX="160.0" layoutY="390.0" prefHeight="25.0" prefWidth="149.0" promptText="Mascota" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
-         <font>
-            <Font name="Arial" size="12.0" />
-         </font>
-      </TextField>
-      <Label layoutX="90.0" layoutY="441.0" text="Médico">
-         <font>
-            <Font name="Arial" size="13.0" />
-         </font>
-      </Label>
-      <TextField fx:id="nameTextField3" layoutX="160.0" layoutY="436.0" prefHeight="25.0" prefWidth="149.0" promptText="Médico" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="mascota" layoutX="160.0" layoutY="390.0" prefHeight="25.0" prefWidth="149.0" promptText="Mascota" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -68,7 +58,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField4" layoutX="557.0" layoutY="297.0" prefHeight="25.0" prefWidth="149.0" promptText="Tipo de Consulta" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="tipoDeConsulta" layoutX="557.0" layoutY="297.0" prefHeight="25.0" prefWidth="149.0" promptText="Tipo de Consulta" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -83,7 +73,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField6" layoutX="560.0" layoutY="406.0" prefHeight="25.0" prefWidth="149.0" promptText="Hora" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
+      <TextField fx:id="hora" layoutX="560.0" layoutY="406.0" prefHeight="25.0" prefWidth="149.0" promptText="00:00" style="-fx-background-color: #D3D3D3; -fx-background-radius: 5;">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -93,10 +83,10 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <DatePicker layoutX="560.0" layoutY="350.0" prefHeight="25.0" prefWidth="149.0" promptText="Fecha" />
-      <TextArea layoutX="869.0" layoutY="282.0" prefHeight="200.0" prefWidth="255.0" promptText="Observaciones" />
-      <Button layoutX="156.0" layoutY="535.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="197.0" style="-fx-background-radius: 10; -fx-background-color: #5568E3;" text="Aplicar Cambios" textFill="WHITE" />
-      <Button layoutX="520.0" layoutY="533.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="197.0" style="-fx-background-radius: 10; -fx-background-color: #E96151;" text="Limpiar" textFill="WHITE" />
-      <Button layoutX="912.0" layoutY="533.0" mnemonicParsing="false" onAction="#irMenu" prefHeight="40.0" prefWidth="195.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Regresar" textFill="WHITE" />
+      <DatePicker fx:id="fecha" layoutX="560.0" layoutY="350.0" prefHeight="25.0" prefWidth="149.0" promptText="Fecha" />
+      <TextArea fx:id="observaciones" layoutX="869.0" layoutY="282.0" prefHeight="200.0" prefWidth="255.0" promptText="Observaciones" />
+      <Button layoutX="156.0" layoutY="535.0" mnemonicParsing="false" onAction="#actualizarCita" prefHeight="38.0" prefWidth="197.0" style="-fx-background-radius: 10; -fx-background-color: #5568E3;" text="Aplicar Cambios" textFill="WHITE" />
+      <Button fx:id="limpiarBtn" layoutX="520.0" layoutY="533.0" mnemonicParsing="false" onAction="#limpiarActualizar" prefHeight="40.0" prefWidth="197.0" style="-fx-background-radius: 10; -fx-background-color: #E96151;" text="Limpiar" textFill="WHITE" />
+      <Button layoutX="912.0" layoutY="533.0" mnemonicParsing="false" onAction="#volver" prefHeight="40.0" prefWidth="195.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Regresar" textFill="WHITE" />
    </children>
 </AnchorPane>

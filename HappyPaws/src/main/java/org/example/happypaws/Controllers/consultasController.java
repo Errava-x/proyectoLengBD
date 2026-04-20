@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import org.example.happypaws.Tablas.consultasCitas;
 import org.example.happypaws.DBConnection;
 import org.example.happypaws.Models.Cita;
-import org.example.happypaws.Models.Cliente;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
@@ -29,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class consultasController implements Initializable{
     private String rootURL = "/org/example/happypaws/";
-    private Cliente clienteModel;
+
     private Cita citaModel;
     @FXML private TextField buscador;
     @FXML private TableView<consultasCitas> tabla;
@@ -49,7 +48,6 @@ public class consultasController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBConnection db = new DBConnection();
-        clienteModel = new Cliente(db);
         citaModel = new Cita(db);
         cargarTabla();
         colClienteID.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
@@ -66,6 +64,7 @@ public class consultasController implements Initializable{
         colObservaciones.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
     }
 
+/// CARGA TODO POR DEFAULT
     public void cargarTabla(){
         ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
         ResultSet listaCitasDB = citaModel.cargarTabla();
@@ -94,6 +93,8 @@ public class consultasController implements Initializable{
         }
 
     }
+
+/// VERIFICA QUE EL ID SEA UN NUMERICO
     public boolean esNumerico(String aVerificar){
         try {
             Integer.parseInt(aVerificar);
@@ -104,6 +105,8 @@ public class consultasController implements Initializable{
             return false;
         }
     }
+
+///CARGA LA TABLA POR EL ID INGRESADO
     public void cargarTablaPorId(){
         ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
         if (esNumerico(buscador.getText())){
@@ -137,6 +140,7 @@ public class consultasController implements Initializable{
         }
     }
 
+///CARGA LA TABLA POR EL NOMBRE DEL CLIENTE
     public void cargarTablaPorCliente(){
         ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
         if (buscador.getText().length() > 0){
@@ -169,6 +173,7 @@ public class consultasController implements Initializable{
         }
     }
 
+///CARGA LA TABLA POR EL NOMBRE DE LA MASCOTA
     public void cargarTablaPorMascota(){
         ObservableList<consultasCitas> listaCitasJV = FXCollections.observableArrayList();
         if (buscador.getText().length() > 0){
